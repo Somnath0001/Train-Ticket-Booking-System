@@ -1,0 +1,121 @@
+# sqlite_python.txt
+
+import sqlite3
+
+try:
+
+    # Connect to DB and create a cursor
+    sqliteConnection = sqlite3.connect('sql.db')
+    cursor = sqliteConnection.cursor()
+    print('DB Init')
+
+    # Write a query and execute it with cursor
+    query = 'select sqlite_version();'
+    cursor.execute(query)
+
+    # Fetch and output result
+    result = cursor.fetchall()
+    print('SQLite Version is {}'.format(result))
+
+    # Close the cursor
+    cursor.close()
+
+# Handle errors
+except sqlite3.Error as error:
+    print('Error occurred - ', error)
+
+# Close DB Connection irrespective of success
+# or failure
+finally:
+
+    if sqliteConnection:
+        sqliteConnection.close()
+        print('SQLite Connection closed')
+
+
+
+# How to print column names from table
+
+# Import module
+import sqlite3
+
+# Connecting to sqlite
+conn = sqlite3.connect('gfg.db')
+
+# Creating a cursor object using the cursor() method
+cursor = conn.cursor()
+
+
+# Display columns
+print('\nColumns in EMPLOYEE table:')
+data=cursor.execute('''SELECT * FROM EMPLOYEE''')
+for column in data.description:
+    print(column[0])
+
+# Display data
+print('\nData in EMPLOYEE table:')
+data=cursor.execute('''SELECT * FROM EMPLOYEE''')
+for row in data:
+    print(row)
+
+# Commit your changes in the database
+conn.commit()
+
+# Closing the connection
+conn.close()
+
+
+
+# Pandas Dataframe sql formatting
+# for row in formattedOutput :
+    #     print(row)
+    print(formattedOutput)
+    # display(formattedOutput)
+    # formattedOutput.style
+    # print(formattedOutput.columns)
+    #
+    # print(type(formattedOutput))
+
+
+    # pd.DataFrame(cur.fetchall())
+    # for column in data.description :
+    #     print(column[0], end=', ')
+    # print()
+    #
+    # for row in data :
+    #     print(row)
+
+# pd.set_option('display.max_rows', 500)
+# pd.set_option('display.max_columns', 21)
+# pd.set_option('display.width', 1000)
+
+
+Display Dataframe Output Beautifully
+=========================================
+from tabulate import tabulate
+print(tabulate(formattedOutput, headers='keys', tablefmt='fancy_grid'))
+
+https://www.geeksforgeeks.org/display-the-pandas-dataframe-in-table-style/
+
+from IPython.display import display
+display()
+
+
+code = "We Says Thanks!"
+html = """\
+<html>
+  <head></head>
+  <body>
+    <p>Thank you for being a loyal customer.<br>
+       Here is your unique code to unlock exclusive content:<br>
+       <br><br><h1>{code}</h1><br>
+       <img src="http://example.com/footer.jpg">
+    </p>
+  </body>
+</html>
+""".format(code=code)
+
+
+
+
+https://www.geeksforgeeks.org/display-the-pandas-dataframe-in-table-style/

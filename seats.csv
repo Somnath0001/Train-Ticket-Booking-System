@@ -1,0 +1,4 @@
+seat can be of a train, coachType, coachTypeIndex, isBooked,
+seatNo, trainNo, coachType, coachTypeIndex, srcStation, destStation, isBooked
+from seatNo and coachType, we can figure out which type of seat it is
+we can go for some particular ranges of seatNo to figure out its coachType

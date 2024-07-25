@@ -1,0 +1,208 @@
+# seat_booking_logic.txt
+
+Logic behind seat availability :
+1. For the train list all seats which are not booked.
+2. From the above list, divide seats for 3 type of coaches.
+3. return the count
+
+bookSeat()
+This method should make
+1. Choose a seat from available seat
+2. set "isBooked = True"
+3. set fromTime
+4. set toTime
+5. set bookedFrom
+6. set bookedUpto
+
+LOGIC BEHIND FINDING AVAILABLE SEATS OF A TRAIN :
+int totalSeatBookedForCoachA = 0
+int totalSeatBookedForCoachB = 0
+int totalSeatBookedForCoachB = 0
+
+Version 1 :
+For each train we need same kind of table
+train_no : day_no : coach_columns
+Table name : d0_12345
+                            D0  D1  D2  D3  D3  D4  D5  D6
+coachA1
+coachA2
+coachA3
+
+coachB1
+...
+coachB7
+
+coachC1
+...
+coachC12
+
+Write code which can generate the following :
+d0_12345
+d1_12345
+...
+d6_12345
+
+d0_12346
+...
+d6_12346
+
+Version 2 :
+
+Table Name : d0_12345_a
+seatNo  A1  A2  A3
+1
+2
+...
+30
+
+seatNo B1 B2 B3 B4 B5 B6 B7
+1
+2
+...
+45
+
+*** Implemented the above
+
+We already have trainNo which are running on that day
+
+Logic behind seat availability :
+1. For the train list all seats which are not booked.
+    a. list for coachA
+    b. list for coachB
+    c. list for coachC
+3. return the count
+
+searchAvailableSeats(trainNo, dateNo):
+    should return (noOfCoachASeatAvailable, noOfCoachBSeatAvailable, noOfCoachCSeatAvailable)
+    tablename = dateNo_trainNo_a
+    noOfCoachASeatAvailableQuery = SELECT COUNT(*) FROM tablename WHERE a1 = 0;
+                                   + SELECT COUNT(*) FROM tablename WHERE a2 = 0;
+                                   + SELECT COUNT(*) FROM tablename WHERE a2 = 0;
+    noOfCoachBSeatAvailableQuery = ...
+    noOfCoachCSeatAvailableQuery = ...
+
+
+#### WE CAN IMPLETEMENT HOW MANY COACH-A IS THERE FOR A TRAIN, THEN WE CAN SEARCH FROM
+TRAIN TABLE FIRST AND THEN WE CAN USE FOR LOOP INSIDE "searchAvailableSeats(trainNo, dateNo)"
+METHOD.
+
+Seat Booking Logic :
+A user might be able to book seat for multiple passangers for a particular date.
+
+bookAvailableSeat(trainNo, dateNo coachType, noOfPassangers, journeyFrom, journeyTo, journeyFromTime, journeyToTime, foodOrdered):
+    1. Choose a seat from available seat
+    for "noOfPassangers" times :
+        chooseAvailableSeat(trainNO, coachType):
+            search coachNo ascending.
+                return the first empty coachNo
+            search seatNo ascending.
+                return the first empty seatNo
+            should return
+            2. coachNo
+            3. seatNo
+        2. set "isBooked = True" :
+            bookSeat(trainNo, dateNo, coachType, coachNo, seatNo)
+            going to update in seat_booked_table for the train, date and coachtype (Eg. : d0_12345_a)
+        3. need to update in "booking" table as well
+
+#### SUPPOSE A PERSON WANTS TO BOOK SEAT FOR 5 PASSANGERS AND CHECKING SEAT AVAILABILITY AT 10:00 AM AND AVAILABLE SEATS ARE AS BELOW
+    (20, 20, 30). BUT HE/SHE DOES NOT PROCEED FOR PAYMENT ON THAT TIME. HE PROCEEDS TO PAYMENT
+    AFTER 20 MINUTES (10:20 AM), BUT THEN SEAT AVAILABILTIY CAN CHANGE (SOME PEOPLE MIGHT HAVE BOOKED BY
+    THEN) AND NOW THE SEAT AVAILABILITY CAN BE AS (0, 1, 1). ONCE HIS/HER PAYMENT IS DONE, HE/SHE WILL
+    BE ABLE TO BOOK ONLY 2 SEATS AND OTHER 3 WILL BE ON WAITING LIST.
+
+WAITING LIST LOGIC :
+    1. When there is no available seats in that particular trainNo or coachType :
+       waiting list will be generated.
+       waitingListCount = variable which keeps track of every trainNo and coachType
+       it will increase when there is waiting list passanger
+       in booking table, status will be "WL", waiting_list_no = waitingListCount
+    2. When users/passangers cancels tickets :
+       for passangers :
+           waitingListCount -= 1
+           set status = "CONFIRM" in booking table, waiting_list_no = 0
+           for all other passangers the waiting list count should decrease by 1.
+
+Booking process :
+-----------------
+user -> searches available trains -> checks seat availability -> select seat -> comes to booking page
+-> fills passanger details -> comes to payment page -> pays the fair amount -> his/her seat is booked
+-> Ticket got generated/printed -> he should be able to check booking status in his booking dashboard
+
+Log In UI                            ^
+    |                               |
+User Dashboard UI                 Sign Up UI
+    |
+Train Search UI
+    |
+Train Booking Page UI
+    |
+Passenger Details UI
+    |
+Payment Page UI             <---->  Card Details UI
+    |
+Booking Status UI
+    |
+Print Ticket UI
+    |
+Log In UI
+
+
+cur.execute('''CREATE TABLE IF NOT EXISTS passangers
+            (passanger_id INT PRIMARY KEY,
+            name TEXT,
+            age INT,
+            gender TEXT,
+            id_card_type TEXT,
+            id_card_no TEXT,
+            pnr_no INT,
+            booked_by TEXT)''')
+
+
+cur.execute('''CREATE TABLE IF NOT EXISTS Booking(
+            book_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            train_no int not null,
+            date_no text not null,
+            coach_type text not null,
+            coach_no int not null,
+            seat_no int not null,
+            booking_date text DEFAULT CURRENT_TIMESTAMP,
+            journey_from int,
+            journey_to int,
+            journey_from_time text,
+            journey_to_time text,
+            food_ordered text,
+            status text)''')
+
+cur.execute('''CREATE TABLE IF NOT EXISTS payment
+        (payment_id INT PRIMARY KEY,
+        user_id TEXT,
+        pnr_no INT,
+        amount INT,
+        method TEXT,
+        card_id INT,
+        status TEXT,
+        datetime TEXT)''')
+
+    # status = Booking
+    # journeyFrom = Booking
+    # journeyTo = Booking
+    # startTimestamp = Booking
+    # endTimestamp = Booking
+    # pnrNo = Payment
+    # trainNo = Booking
+    # trainName = Train
+    # coachType = Booking
+    # distance = Stations  *****
+    # bookingDateTimestamp = Booking
+    # id = Passanger *****
+    # name = Passanger
+    # age = Passanger
+    # gender = Passanger
+    # foodOrdered = Booking
+    # bookingStatus = Booking *****
+    # currentStatus = Booking *****
+    # paymentId = Payment
+    # totalAmount = Payment
+    # convenienceFee = 0
+    # grandTotal = totalAmount + convenienceFee

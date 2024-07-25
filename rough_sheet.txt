@@ -1,0 +1,100 @@
+# rough_sheet.txt
+
+Object :
+
+Seat :
+------
+1. Is of a train
+2. Is of a coach type
+3. Is of coach no
+4. Can be booked / empty --> editable
+5. Booked From  --> editable
+6. Booked Upto  --> editable
+7. Is of a berth
+8. Of Upper/ Lower berth
+9. RAC / quota
+10. From Time
+11. To Time
+
+Seat (seatNo, trainNo, coachType, coachNo, berth, berthType, isRac)
+
+Book :
+------
+bookId, trainNo, coachType, coachNo seatNo, pnrNo isBooked, bookFrom, bookUpto, bookingDate, fromTime, toTime, bookStatus
+
+book -> seat
+book -> PNR
+book -> train
+
+bookNo will be generated based on algo
+
+PNR (Passenger Name Record): (Logged user and passanger can be different)
+----------------------------
+1. Name
+2. Age
+3. Gender
+4. Seat
+5. JourneyDate
+6. JourneyDuration
+7. Journey Start Time
+8. Journey End Time --> can be calculated from (startTime + duration)
+9. Boarding Station
+10. Deboarding Station
+11. Train Info
+12. Booking Status (Not Booked, Booked, Pending) --> Pending for whom payment is stuck
+13. Food Ordered (Ordered, Not Ordered)
+
+PNR (pnrNo, pName, pAge, pGender, seatNo, journeyDate, journeyDuration, journeyStartTime,
+     journeyEndTime, BoardingStation, DeboardingStation, trainNo, bookingStatus, isFoodOrdered )
+
+PNR Number Properties :
+-----------------------
+1. PNR number should be of 10 digits.
+2. First 3 digits should represent zone.
+3. Last 7 should be unique.
+Eg. : 123-4567890
+
+There should be a method : pnrNoGenerator()
+It will generate random 7 numbers and conbine with first 3 numbers
+
+Booking process :
+-----------------
+user -> searches available trains -> checks seat availability -> select seat -> comes to booking page
+-> fills passanger details -> comes to payment page -> pays the fair amount -> his/her seat is booked
+-> Ticket got generated/printed -> he should be able to check booking status in his booking dashboard
+
+Login Page -> Train Search Page -> Booking Page -> Payment Page -> Ticket Print Page -> user Dashboard
+
+Have already created logic for train availabilty search
+Create module "seatAvailability.py" to work on seat availability search
+Need to create method for seatAvailabilitySearch() which will return available seats of the trains
+coachASeatAvailability() -> return total available seats of coachA
+coachBSeatAvailability() -> return total available seats of coachB
+coachCSeatAvailability() -> return total available seats of coachC
+
+Logic behind seat availability :
+1. For the train list all seats which are not booked.
+2. From the above list, divide seats for 3 type of coaches.
+3. return the count
+
+TrainNo -> 5 digits
+CoachType -> 1 digit (1-coachA, 2-coachB, 3-coachC)
+CoachNo -> 2 digits (1 - 99)
+seatNo -> 2 digits (1 - 99)
+So
+uniqueSeatNo -> 10 digits (trainNo, coachType, coachNo, seatNo)
+
+bookSeat()
+This method should make
+1. Choose a seat from available seat
+2. set "isBooked = True"
+3. set fromTime
+4. set toTime
+5. set bookedFrom
+6. set bookedUpto
+
+A PNR number for a specific Journey gets flushed 5 days after the date of journey. A flushed PNR means that its status cannot be checked online.
+
+To Do :
+PNR table
+booking table

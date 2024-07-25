@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Train Ticket</title>
+    </head>
+    <style>
+        .ticket-container {
+            display: grid;
+            width: 800px;
+            grid-template-columns: auto;
+            background-color: #b3cee5;
+            padding: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.8)
+        }
+        .header {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+        .header-ers {
+            font-size: large;
+        }
+        .header-status {
+            font-size: smaller;
+        }
+        .journey-details {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            row-gap: 3px;
+        }
+        .journey-details-right {
+            text-align: right;
+        }
+        .booking-details {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            text-align: center;
+            row-gap: 5px;
+        }
+        .booking-details-color {
+            color: green;
+            font-weight: bold;
+            font-size: large;
+        }
+        .passenger-details {
+            display: grid;
+            grid-template-columns: auto;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+        }
+        .passanger-details-inside {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            text-align: center;
+            padding: 5px;
+        }
+        .passanger-details-inside-data {
+            font-size: small;
+        }
+        .payment-details {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+        }
+        .help {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+    </style>
+        <body>
+        <div class="ticket-container">
+            <div class="header">
+                <div class="header-status">COMP</div>
+                <div class="header-ers"><b>Electronic Reservation Slip (ERS)</b></div>
+                <div class="header-status">COMP</div>
+            </div>
+            <div class="journey-details">
+                <div><b>Booked From</b></div>
+                <div class="journey-details-right"><b>To</b></div>
+                <div>Howrah</div>
+                <div class="journey-details-right">Bengalore</div>
+                <div>Start Date : +0 1030 HRS</div>
+                <div class="journey-details-right">End Date : +0 1825 HRS</div>
+            </div>
+            <div class="booking-details">
+                <div><b>PNR</b></div>
+                <div><b>Train No. / Name</b></div>
+                <div><b>Class</b></div>
+                <div class="booking-details-color">1000000002</div>
+                <div class="booking-details-color">12345 / Duronto Express</div>
+                <div class="booking-details-color">A</div>
+                <div><b>Quota</b></div>
+                <div><b>Distance</b></div>
+                <div><b>Booking Date</b></div>
+                <div>General</div>
+                <div>950.0 KM</div>
+                <div>2024-07-21 07:25:48 HRS</div>
+            </div>
+            <div class="passenger-details">
+                <div><b>Passanger Detials :</b></div>
+                <div class="passanger-details-inside">
+                    <div><b>#</b></div>
+                    <div><b>Name</b></div>
+                    <div><b>Age</b></div>
+                    <div><b>Gender</b></div>
+                    <div><b>Food Choice</b></div>
+                    <div><b>Booking Status</b></div>
+                    <div><b>Current Status</b></div>
+                    
+                <div class="passanger-details-inside-data">1</div>
+                <div class="passanger-details-inside-data">somnath</div>
+                <div class="passanger-details-inside-data">25</div>
+                <div class="passanger-details-inside-data">M</div>
+                <div class="passanger-details-inside-data">Y</div>
+                <div class="passanger-details-inside-data">COMP</div>
+                <div class="passanger-details-inside-data">COMP</div>
+                
+                </div>
+            </div>
+            <div class="payment-details">
+                <div>Transaction Id :</div>
+                <div>3</div>
+                <div><b>Payment Details :</b></div>
+                <div></div>
+                <div>Ticket Fare :</div>
+                <div><span>&#8377;</span> 5700</div>
+                <div>Convenience Fee :</div>
+                <div><span>&#8377;</span> 0</div>
+                <div>Total Fare :</div>
+                <div><span>&#8377;</span> 5700</div>
+            </div>    
+            <div class="help">
+                <div>Help Line No. - 139</div>
+                <div>SMS 'RAIL' to 139</div>
+            </div>
+        </div>
+    </body>
+    </html>
+    

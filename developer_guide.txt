@@ -1,0 +1,57 @@
+# developer_guide.txt
+
+'trains.csv' file has the following information
+trainNo,trainName,D0,D1,D2,D3,D4,D5,D6,startTime,firstStationNo,speed,noOfCoachA,noOfCoachB,noOfCoachC,fair/km,lastStationNo
+
+'stations.csv' file has the follwoing information
+stationNo,stationName,distuptoNextStation
+
+
+
+
+
+What I have learned from this project :
+1. Use of module to make things easier
+2. First write down your vision
+3. Write Logics
+4. Write small chunks of code and then test it
+5. Make test cases and test it
+6. Create 'developer_guide.txt'
+7. Create 'user_guide.txt'
+8. Create 'Log.txt' to generate logs of the application
+9. Short cuts of pycharm (rename : shift + F6) (comment : ctrl + /)
+10. Research on the topic of project
+11. Think about frontend
+12. Think how backend should work : Database concept, admin concept etc.
+13. Write codes in such a way that it should be reused.
+14. Document all the codes and logic, try print('[DEBUG] for debugging purpose ...')
+    Making more sense with
+    a. variable name
+    b. method/function name
+    c. comment
+15. Apply the concept of "SDLC"
+16. Be careful of python type error (python is not strongly typed)
+
+
+Research on the Project "Train Ticket Booking" application :
+1. Seached how the application works
+2. created "trains.txt", "stations.txt" keeping in mind that these are object. Using these files as tables of DBMS
+3. Using module to separate all relevant code/logic so that in future it can be updated
+4. My plan is to use html and css for front end of the application so in future I'll be able to use all the codes and use all functions as APIs
+   Will take data from CSS and provide input to the methods
+5. Testing each methods so that the progress would be fine.
+
+
+What I should learn :
+1. SDLC
+2. How developers actually brainstorm about application before even writing code.
+3. How to document things properly
+4. Create Log.txt (Error, Warning...)
+5. More on python
+
+
+Short-cut :
+1. Hit ctrl+shift+F10 to run.
+2. Hit shift+F6 to change variable names in all places.
+3. ctrl+p for getting suggestion for parameters.
+
