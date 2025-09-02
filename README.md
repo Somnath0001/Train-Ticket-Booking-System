@@ -1,0 +1,1 @@
+This is a train booking system console based application. Passengers can signup, check available trains, add passenger details, book tickets, check confirmation status and receive tickets using this application. The application is entirely build on Python and inbuilt SQlite database.
